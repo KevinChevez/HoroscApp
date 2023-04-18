@@ -2,29 +2,26 @@ package com.example.horoscapp.ui.lucky
 
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationSet
-import android.view.animation.AnimationUtils
-import android.widget.TextView
 import androidx.core.animation.doOnEnd
-import androidx.core.animation.doOnStart
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.example.horoscapp.R
 import com.example.horoscapp.databinding.FragmentLuckyBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.random.Random
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LuckyFragment : Fragment() {
+    @Inject
+    lateinit var randomCardsProvider: RandomCardsProvider
+
     private val viewModel by viewModels<LuckyViewModel>()
     private lateinit var luckyBinding: FragmentLuckyBinding
 
@@ -85,21 +82,14 @@ class LuckyFragment : Fragment() {
     }
 
     private fun prepareCard() {
-        val image = when (Random.nextInt(0, 5)) {
-            0 -> R.drawable.card_fool
-            1 -> R.drawable.card_moon
-            2 -> R.drawable.card_hermit
-            3 -> R.drawable.card_star
-            4 -> R.drawable.card_sun
-            5 -> R.drawable.card_sword
-            else -> R.drawable.card_reverse
-        }
+        val luckData = randomCardsProvider.getLucky()
         luckyBinding.viewFrontContainer.ivLuckyCard.setImageDrawable(
             ContextCompat.getDrawable(
                 requireContext(),
-                image
+                luckData.image
             )
         )
+        luckyBinding.tvLuckyInfo.text = getString(luckData.text)
     }
 
     override fun onCreateView(
