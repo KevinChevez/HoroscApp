@@ -19,8 +19,8 @@
         tools:layout="@layout/fragment_list" />
 
     <fragment
-        android:id="@+id/todoFragment"
-        android:name="com.example.horoscapp.ui.todo.TodoFragment"
+        android:id="@+id/luckyFragment"
+        android:name="com.example.horoscapp.ui.lucky.LuckyFragment"
         android:label="fragment_todo"
-        tools:layout="@layout/fragment_todo" />
+        tools:layout="@layout/fragment_lucky" />
 </navigation>
