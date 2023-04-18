@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.horoscapp.R
 import com.example.horoscapp.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,16 +17,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.mainBinding = ActivityMainBinding.inflate(layoutInflater)
+//        this.mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
 
         initUI()
     }
 
     private fun initUI() {
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavView)
         val navHostManager = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         this.navController = navHostManager.navController
-        mainBinding.btnNavView.setupWithNavController(this.navController)
+        bottomNavigationView.setupWithNavController(this.navController)
     }
 
 
