@@ -55,7 +55,7 @@ class DetailActivity : AppCompatActivity() {
 //                            runOnUiThread {
 //                                Toast.makeText(this, "Esto ha funcionado", Toast.LENGTH_SHORT).show()
 //                            }
-                            Toast.makeText(this@DetailActivity, "Esto ha funcionado", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@DetailActivity, it.horoscopeModel.horoscope, Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
